@@ -1,0 +1,37 @@
+{
+  "name": "strict-merge",
+  "version": "1.0.0",
+  "description": "Deep merge two objects with strict type checking",
+  "main": "index.js",
+  "scripts": {
+    "flow-typed": "flow-typed install",
+    "flow:build": "flow gen-flow-files ./src/index.js --out-dir ./src",
+    "babel": "babel src/*.js src/**/*.js --exclude=node_modules --out-dir . --source-maps inline",
+    "test": "npm run lint && npm run flow-typed && npm run flow && npm run jest",
+    "flow": "flow",
+    "lint": "eslint src/ test/ *.js",
+    "jest": "jest test --env=node --no-cache --coverage --verbose --runInBand --silent=false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krakenjs/strict-merge.git"
+  },
+  "keywords": [
+    "merge"
+  ],
+  "author": "dbrain",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/krakenjs/strict-merge/issues"
+  },
+  "homepage": "https://github.com/krakenjs/strict-merge#readme",
+  "devDependencies": {
+    "deep-equal": "^1.0.1",
+    "flow-bin": "^0.69.0",
+    "grumbler-scripts": "^2.0.7",
+    "jest": "^22.4.3",
+    "sleep": "^5.1.1"
+  },
+  "dependencies": {
+  }
+}
