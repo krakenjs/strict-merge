@@ -16,7 +16,7 @@ export function getTypeof(item : mixed) : string {
 
 export function isPrimitiveType(item : mixed) : boolean {
     let type = getTypeof(item);
-    return (type === TYPE.STRING || type === TYPE.NUMBER || type === TYPE.BOOLEAN);
+    return (type === TYPE.STRING || type === TYPE.NUMBER || type === TYPE.BOOLEAN || type === TYPE.NULL || type === TYPE.UNDEFINED);
 }
 
 export function isObjectOrArrayType(item : mixed) : boolean {
