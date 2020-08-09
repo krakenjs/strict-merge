@@ -7,20 +7,26 @@ import type { JSONArrayType, JSONObjectType, JSONPrimitive } from './types';
 
 type MergerType<T : JSONPrimitive> = (first : T, second : T, type : string, key : string) => T;
 
-let defaultMerger = ((a, b) => b);
+const defaultMerger = ((a, b) => b);
 
 // eslint-disable-next-line complexity
-export function strictMerge<T : JSONArrayType | JSONObjectType > (first : T, second : T, merger? : MergerType<*> = defaultMerger, fullKey? : string = '') : T {
+export function strictMerge<T : JSONArrayType | JSONObjectType > (
+    first : T,
+    second : T,
+    // $FlowFixMe
+    merger? : MergerType<*> = defaultMerger,
+    fullKey? : string = ''
+) : T {
     
     assertRawObjectType(first);
     assertRawObjectType(second);
 
-    let typeOfFirst = getTypeof(first);
-    let typeOfSecond = getTypeof(second);
+    const typeOfFirst = getTypeof(first);
+    const typeOfSecond = getTypeof(second);
 
     if (typeOfFirst === TYPE.ARRAY && typeOfSecond === TYPE.ARRAY) {
 
-        let result : JSONArrayType = [];
+        const result : JSONArrayType = [];
 
         const firstLength = first.length;
         const secondLength = second.length;
@@ -87,12 +93,12 @@ export function strictMerge<T : JSONArrayType | JSONObjectType > (first : T, sec
 
     } else if (typeOfFirst === TYPE.OBJECT && typeOfSecond === TYPE.OBJECT) {
 
-        let result : JSONObjectType = {};
+        const result : JSONObjectType = {};
 
         // $FlowFixMe
         const keys = new Set([ ...Object.keys(first), ...Object.keys(second) ]);
 
-        for (let key of keys) {
+        for (const key of keys) {
             const qualifiedKey = fullKey ? `${ fullKey }.${ key }` : `${ key }`;
 
             // $FlowFixMe

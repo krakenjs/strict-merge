@@ -7,7 +7,7 @@ export function getTypeof(item : mixed) : string {
     if (item === null) {
         return TYPE.NULL;
     }
-    let type = typeof item;
+    const type = typeof item;
     if (type === TYPE.OBJECT && Array.isArray(item)) {
         return TYPE.ARRAY;
     }
@@ -15,12 +15,12 @@ export function getTypeof(item : mixed) : string {
 }
 
 export function isPrimitiveType(item : mixed) : boolean {
-    let type = getTypeof(item);
+    const type = getTypeof(item);
     return (type === TYPE.STRING || type === TYPE.NUMBER || type === TYPE.BOOLEAN || type === TYPE.NULL || type === TYPE.UNDEFINED);
 }
 
 export function isObjectOrArrayType(item : mixed) : boolean {
-    let type = getTypeof(item);
+    const type = getTypeof(item);
     return (type === TYPE.OBJECT || type === TYPE.ARRAY);
 }
 
@@ -33,7 +33,7 @@ export function isRawArray(item : mixed) : boolean {
 }
 
 export function isDefined(item : mixed) : boolean {
-    let type = getTypeof(item);
+    const type = getTypeof(item);
     return type !== TYPE.NULL && type !== TYPE.UNDEFINED;
 }
 

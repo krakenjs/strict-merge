@@ -5,14 +5,13 @@
   "main": "index.js",
   "scripts": {
     "flow-typed": "flow-typed install",
-    "flow:build": "flow gen-flow-files ./src/index.js --out-dir ./src",
     "babel": "babel src/*.js src/**/*.js --exclude=node_modules --out-dir . --source-maps inline",
-    "test": "npm run lint && npm run flow-typed && npm run flow && npm run jest",
+    "test": "npm run lint && rm -rf ./flow-typed && npm run flow-typed && npm run flow && npm run jest",
     "flow": "flow",
     "lint": "eslint src/ test/ *.js",
     "prepublishOnly": "npm run babel",
     "postpublish": "git checkout ./src",
-    "jest": "jest test --env=node --no-cache --coverage --verbose --runInBand --silent=false"
+    "jest": "jest test --env=node --no-cache --coverage --collectCoverageFrom=./src --verbose --runInBand --silent=false"
   },
   "repository": {
     "type": "git",
@@ -29,9 +28,9 @@
   "homepage": "https://github.com/krakenjs/strict-merge#readme",
   "devDependencies": {
     "deep-equal": "^1.0.1",
-    "flow-bin": "^0.69.0",
-    "grumbler-scripts": "^2.0.7",
-    "jest": "^22.4.3"
+    "flow-bin": "^0.130.0",
+    "grumbler-scripts": "^3",
+    "jest": "^26"
   },
   "dependencies": {}
 }

@@ -4,7 +4,7 @@ export function makeError(code : string, message : string, originalError? : Erro
     if (originalError && originalError.stack) {
         message = `${ message }\n\n${ originalError.stack }`;
     }
-    let err = new Error(message);
+    const err = new Error(message);
     // $FlowFixMe
     err.code = code;
     return err;

@@ -4,22 +4,23 @@ import deepEqual from 'deep-equal';
 
 import { strictMerge, TYPE } from '../src';
 
+// $FlowFixMe
 test(`Should successfully merge two simple objects`, () => {
 
-    let one = {
+    const one = {
         foo: 'bar'
     };
 
-    let two = {
+    const two = {
         baz: 'boz'
     };
 
-    let expected = {
+    const expected = {
         foo: 'bar',
         baz: 'boz'
     };
 
-    let result = strictMerge(one, two);
+    const result = strictMerge(one, two);
 
     if (!deepEqual(result, expected)) {
         throw new Error(`Expected\n\n${ JSON.stringify(result, null, 2) }\n\nto equal\n\n${ JSON.stringify(expected, null, 2) }`);
@@ -28,7 +29,7 @@ test(`Should successfully merge two simple objects`, () => {
 
 test(`Should successfully merge two deep objects`, () => {
 
-    let one = {
+    const one = {
         foo: {
             bar: {
                 baz: 1,
@@ -37,7 +38,7 @@ test(`Should successfully merge two deep objects`, () => {
         }
     };
 
-    let two = {
+    const two = {
         foo: {
             bar: {
                 baz: 3
@@ -45,7 +46,7 @@ test(`Should successfully merge two deep objects`, () => {
         }
     };
 
-    let expected = {
+    const expected = {
         foo: {
             bar: {
                 baz: 3,
@@ -54,7 +55,7 @@ test(`Should successfully merge two deep objects`, () => {
         }
     };
 
-    let result = strictMerge(one, two);
+    const result = strictMerge(one, two);
 
     if (!deepEqual(result, expected)) {
         throw new Error(`Expected\n\n${ JSON.stringify(result, null, 2) }\n\nto equal\n\n${ JSON.stringify(expected, null, 2) }`);
@@ -63,19 +64,19 @@ test(`Should successfully merge two deep objects`, () => {
 
 test(`Should successfully two objects with an array`, () => {
 
-    let one = {
+    const one = {
         foo: [ 1, 2, 3 ]
     };
 
-    let two = {
+    const two = {
         foo: [ 1, 2, 8, 9 ]
     };
 
-    let expected = {
+    const expected = {
         foo: [ 1, 2, 8, 9 ]
     };
 
-    let result = strictMerge(one, two);
+    const result = strictMerge(one, two);
 
     if (!deepEqual(result, expected)) {
         throw new Error(`Expected\n\n${ JSON.stringify(result, null, 2) }\n\nto equal\n\n${ JSON.stringify(expected, null, 2) }`);
@@ -84,7 +85,7 @@ test(`Should successfully two objects with an array`, () => {
 
 test(`Should successfully merge two deep objects with arrays`, () => {
 
-    let one = {
+    const one = {
         foo: {
             bar: {
                 baz: 1,
@@ -102,7 +103,7 @@ test(`Should successfully merge two deep objects with arrays`, () => {
         }
     };
 
-    let two = {
+    const two = {
         foo: {
             bar: {
                 baz: 1,
@@ -119,7 +120,7 @@ test(`Should successfully merge two deep objects with arrays`, () => {
         }
     };
 
-    let expected = {
+    const expected = {
         foo: {
             bar: {
                 baz: 1,
@@ -138,7 +139,7 @@ test(`Should successfully merge two deep objects with arrays`, () => {
         }
     };
 
-    let result = strictMerge(one, two);
+    const result = strictMerge(one, two);
 
     if (!deepEqual(result, expected)) {
         throw new Error(`Expected\n\n${ JSON.stringify(result, null, 2) }\n\nto equal\n\n${ JSON.stringify(expected, null, 2) }`);
@@ -148,7 +149,7 @@ test(`Should successfully merge two deep objects with arrays`, () => {
 
 test(`Should successfully merge two deep objects with merging criteria`, () => {
 
-    let one = {
+    const one = {
         foo: {
             bar: {
                 baz: 1,
@@ -168,7 +169,7 @@ test(`Should successfully merge two deep objects with merging criteria`, () => {
         }
     };
 
-    let two = {
+    const two = {
         foo: {
             bar: {
                 baz: 5,
@@ -188,7 +189,7 @@ test(`Should successfully merge two deep objects with merging criteria`, () => {
         }
     };
 
-    let expected = {
+    const expected = {
         foo: {
             bar: {
                 baz: 5,
@@ -208,7 +209,7 @@ test(`Should successfully merge two deep objects with merging criteria`, () => {
         }
     };
 
-    let result = strictMerge(one, two, (a, b, type) => {
+    const result = strictMerge(one, two, (a, b, type) => {
         if (type === TYPE.NUMBER) {
             return Math.max(a, b);
         }
@@ -222,11 +223,11 @@ test(`Should successfully merge two deep objects with merging criteria`, () => {
 
 test(`Should error out if disparate types passed`, () => {
 
-    let one = {
+    const one = {
         foo: 'bar'
     };
 
-    let two = {
+    const two = {
         foo: 55
     };
 
@@ -245,7 +246,7 @@ test(`Should error out if disparate types passed`, () => {
 
 test(`Should error out if disparate types passed in deep object`, () => {
 
-    let one = {
+    const one = {
         foo: {
             bar: {
                 baz: 1,
@@ -265,7 +266,7 @@ test(`Should error out if disparate types passed in deep object`, () => {
         }
     };
 
-    let two = {
+    const two = {
         foo: {
             bar: {
                 baz: 5,
